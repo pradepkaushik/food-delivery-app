@@ -12,7 +12,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo 'Building Docker image...'
-                sh 'docker build -t food-app:latest .'
+                sh '''
+                    docker build --progress=plain -t food-app:latest .
+                '''
             }
         }
 
