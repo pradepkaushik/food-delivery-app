@@ -27,15 +27,18 @@ pipeline {
 
         stage('Login to AWS ECR') {
             steps {
-                sh '''
-                    set -e
+                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-cred']]) {
+                    sh '''
+                        set -e
 
-                    echo "Getting ECR login token..."
-                    aws ecr get-login-password --region ap-south-1 > /tmp/ecr_token.txt
+                        echo "Verifying AWS identity..."
+                        aws sts get-caller-identity
 
-                    echo "Logging into ECR..."
-                    docker login --username AWS --password-stdin 596055752329.dkr.ecr.ap-south-1.amazonaws.com < /tmp/ecr_token.txt
-                '''
+                        echo "Logging into ECR..."
+                        aws ecr get-login-password --region $AWS_REGION | \
+                        docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+                    '''
+                }
             }
         }
 
@@ -43,7 +46,7 @@ pipeline {
             steps {
                 sh '''
                     set -e
-                    docker tag food-app:latest 596055752329.dkr.ecr.ap-south-1.amazonaws.com/food-app:latest
+                    docker tag food-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
                 '''
             }
         }
@@ -52,7 +55,7 @@ pipeline {
             steps {
                 sh '''
                     set -e
-                    docker push 596055752329.dkr.ecr.ap-south-1.amazonaws.com/food-app:latest
+                    docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
                 '''
             }
         }
