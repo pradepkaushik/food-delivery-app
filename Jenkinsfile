@@ -5,37 +5,45 @@ pipeline {
         AWS_REGION = "ap-south-1"
         AWS_ACCOUNT_ID = "596055752329"
         ECR_REPO = "food-app"
+        IMAGE_NAME = "food-app"
     }
 
     stages {
 
         stage('Checkout Code') {
             steps {
-                echo 'Code already checked out by Jenkins'
+                echo 'Checking out code from GitHub...'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t food-app:latest .'
+                sh '''
+                    set -e
+                    docker build -t food-app:latest .
+                '''
             }
         }
 
         stage('Login to AWS ECR') {
             steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-cred']]) {
-                    sh '''
-                        aws ecr get-login-password --region $AWS_REGION | \
-                        docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-                    '''
-                }
+                sh '''
+                    set -e
+
+                    echo "Getting ECR login token..."
+                    aws ecr get-login-password --region ap-south-1 > /tmp/ecr_token.txt
+
+                    echo "Logging into ECR..."
+                    docker login --username AWS --password-stdin 596055752329.dkr.ecr.ap-south-1.amazonaws.com < /tmp/ecr_token.txt
+                '''
             }
         }
 
         stage('Tag Image') {
             steps {
                 sh '''
-                    docker tag food-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
+                    set -e
+                    docker tag food-app:latest 596055752329.dkr.ecr.ap-south-1.amazonaws.com/food-app:latest
                 '''
             }
         }
@@ -43,10 +51,10 @@ pipeline {
         stage('Push Image to ECR') {
             steps {
                 sh '''
-                    docker push $AWS_ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/$ECR_REPO:latest
+                    set -e
+                    docker push 596055752329.dkr.ecr.ap-south-1.amazonaws.com/food-app:latest
                 '''
             }
         }
-
     }
 }
