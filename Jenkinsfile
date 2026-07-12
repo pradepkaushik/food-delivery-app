@@ -1,4 +1,3 @@
-```groovy
 pipeline {
     agent any
 
@@ -11,14 +10,13 @@ pipeline {
 
         stage('Checkout Code') {
             steps {
-                echo 'Checking out code from GitHub...'
+                echo 'Checking out source code...'
             }
         }
 
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    set -e
                     docker build -t ${IMAGE_NAME}:latest .
                 '''
             }
@@ -27,9 +25,7 @@ pipeline {
         stage('Deploy Container') {
             steps {
                 sh '''
-                    set +e
-                    docker rm -f ${CONTAINER_NAME}
-                    set -e
+                    docker rm -f ${CONTAINER_NAME} || true
 
                     docker run -d \
                         --name ${CONTAINER_NAME} \
@@ -42,10 +38,7 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 sh '''
-                    echo "Running Containers:"
                     docker ps
-
-                    echo "Testing Application:"
                     curl http://localhost
                 '''
             }
@@ -54,12 +47,11 @@ pipeline {
 
     post {
         success {
-            echo '✅ Application deployed successfully!'
+            echo 'Application deployed successfully.'
         }
 
         failure {
-            echo '❌ Pipeline failed.'
+            echo 'Pipeline failed.'
         }
     }
 }
-```
