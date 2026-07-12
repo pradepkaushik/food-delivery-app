@@ -1,13 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        AWS_REGION = "ap-south-1"
-        AWS_ACCOUNT_ID = "596055752329"
-        ECR_REPO = "food-app"
-        IMAGE_NAME = "food-app"
-    }
-
     stages {
 
         stage('Checkout Code') {
@@ -25,37 +18,30 @@ pipeline {
             }
         }
 
-        stage('Login to AWS ECR') {
-            steps {
-                withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', credentialsId: 'aws-ecr']]) {
-                    sh '''
-                        set -e
-
-                        echo "Testing AWS identity..."
-                        aws sts get-caller-identity
-
-                        echo "Logging into ECR..."
-                        aws ecr get-login-password --region $AWS_REGION | \
-                        docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
-                    '''
-                }
-            }
-        }
-
-        stage('Tag Image') {
+        stage('Deploy to Nginx') {
             steps {
                 sh '''
                     set -e
-                    docker tag food-app:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
+
+                    echo "Removing old website files..."
+                    sudo rm -rf /var/www/html/*
+
+                    echo "Copying new website files..."
+                    sudo cp -r /var/lib/jenkins/workspace/first-pipeline/* /var/www/html/
+
+                    echo "Deployment completed."
                 '''
             }
         }
 
-        stage('Push Image to ECR') {
+        stage('Verify Deployment') {
             steps {
                 sh '''
-                    set -e
-                    docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO:latest
+                    echo "Listing files in Nginx directory:"
+                    ls -la /var/www/html
+
+                    echo "Testing local web server:"
+                    curl http://localhost
                 '''
             }
         }
