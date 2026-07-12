@@ -12,38 +12,37 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 sh '''
-                    set -e
                     docker build -t food-app:latest .
                 '''
             }
         }
 
-        stage('Deploy to Nginx') {
+        stage('Run Docker Container') {
             steps {
                 sh '''
-                    set -e
-
-                    echo "Removing old website files..."
-                    sudo rm -rf /var/www/html/*
-
-                    echo "Copying new website files..."
-                    sudo cp -r /var/lib/jenkins/workspace/first-pipeline/* /var/www/html/
-
-                    echo "Deployment completed."
+                    docker rm -f food-app-container || true
+                    docker run -d --name food-app-container -p 80:80 food-app:latest
                 '''
             }
         }
 
-        stage('Verify Deployment') {
+        stage('Verify') {
             steps {
                 sh '''
-                    echo "Listing files in Nginx directory:"
-                    ls -la /var/www/html
-
-                    echo "Testing local web server:"
+                    docker ps
                     curl http://localhost
                 '''
             }
+        }
+    }
+
+    post {
+        success {
+            echo '✅ Application deployed successfully!'
+        }
+
+        failure {
+            echo '❌ Pipeline failed.'
         }
     }
 }
