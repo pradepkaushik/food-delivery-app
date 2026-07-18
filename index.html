@@ -154,7 +154,7 @@ footer{
 <div class="food-grid">
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="Cheese Burger">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="">
 <div class="card-body">
 <h3>Cheese Burger</h3>
 <p>Loaded with cheese and fresh veggies.</p>
@@ -164,17 +164,17 @@ footer{
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="Italian Pizza">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="">
 <div class="card-body">
 <h3>Italian Pizza</h3>
-<p>Wood-fired cheese pizza.</p>
+<p>Wood fired cheese pizza.</p>
 <div class="price">$14.99</div>
 <button onclick="addCart()">Add to Cart</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800" alt="Healthy Salad">
+<img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800" alt="">
 <div class="card-body">
 <h3>Healthy Salad</h3>
 <p>Fresh vegetables with dressing.</p>
@@ -184,7 +184,7 @@ footer{
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800" alt="French Fries">
+<img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800" alt="">
 <div class="card-body">
 <h3>French Fries</h3>
 <p>Crispy golden fries.</p>
@@ -194,20 +194,20 @@ footer{
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="Chicken Meal">
+<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="">
 <div class="card-body">
 <h3>Chicken Meal</h3>
-<p>Grilled chicken served with rice.</p>
+<p>Grilled chicken with rice.</p>
 <div class="price">$11.99</div>
 <button onclick="addCart()">Add to Cart</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800" alt="Chocolate Cake">
+<img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800" alt="">
 <div class="card-body">
 <h3>Chocolate Cake</h3>
-<p>Soft and creamy chocolate dessert.</p>
+<p>Soft and creamy dessert.</p>
 <div class="price">$6.99</div>
 <button onclick="addCart()">Add to Cart</button>
 </div>
@@ -218,17 +218,23 @@ footer{
 </div>
 
 <footer>
-<p>© 2026 FoodExpress | Docker • Jenkins • AWS ECR • Amazon EKS Demo</p>
+<p>© 2026 FoodExpress | Docker • Jenkins • AWS ECR Demo</p>
 </footer>
 
 <script>
+
 let cart = 0;
 
-function addCart() {
-    cart++;
-    document.getElementById("cart").innerHTML = cart;
-    alert("✅ Item added to cart!");
+function addCart(){
+
+cart++;
+
+document.getElementById("cart").innerHTML = cart;
+
+alert("Item added to cart!");
+
 }
+
 </script>
 
 </body>
