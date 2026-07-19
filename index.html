@@ -1,235 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FoodExpress</title>
-
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FoodExpress DevOps Demo</title>
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,Helvetica,sans-serif;
-}
-
-body{
-    background:#edf2ff;
-}
-
-header{
-    background:#312e81;
-    color:white;
-    padding:20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-}
-
-header h1{
-    font-size:30px;
-}
-
-.cart{
-    background:#ffffff;
-    color:#312e81;
-    padding:10px 20px;
-    border-radius:30px;
-    font-weight:bold;
-}
-
-.hero{
-    text-align:center;
-    padding:60px;
-    background:linear-gradient(135deg,#312e81,#4f46e5,#7c3aed);
-    color:white;
-}
-
-.hero h2{
-    font-size:42px;
-    margin-bottom:15px;
-}
-
-.hero p{
-    font-size:20px;
-}
-
-.container{
-    width:90%;
-    margin:auto;
-    padding:40px 0;
-}
-
-.food-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:25px;
-}
-
-.card{
-    background:white;
-    border-radius:15px;
-    overflow:hidden;
-    box-shadow:0 8px 25px rgba(0,0,0,.12);
-    transition:.3s;
-}
-
-.card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 15px 35px rgba(0,0,0,.25);
-}
-
-.card img{
-    width:100%;
-    height:200px;
-    object-fit:cover;
-}
-
-.card-body{
-    padding:20px;
-}
-
-.card-body h3{
-    margin-bottom:10px;
-    color:#312e81;
-}
-
-.card-body p{
-    color:#555;
-}
-
-.price{
-    color:#4f46e5;
-    font-size:22px;
-    font-weight:bold;
-    margin:10px 0;
-}
-
-button{
-    width:100%;
-    padding:12px;
-    border:none;
-    background:#4f46e5;
-    color:white;
-    font-size:16px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-button:hover{
-    background:#3730a3;
-}
-
-footer{
-    margin-top:40px;
-    background:#312e81;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-</style>
-
-</head>
-<body>
-
-<header>
-<h1>🍔 FoodExpress</h1>
-
-<div class="cart">
-🛒 Cart:
-<span id="cart">0</span>
-</div>
-
-</header>
-
-<section class="hero">
-<h2>🚀 FoodExpress CI/CD Demo</h2>
-<p>GitHub • Jenkins • Docker • Amazon ECR • AWS</p>
-</section>
-
-<div class="container">
-
-<div class="food-grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800" alt="">
-<div class="card-body">
-<h3>Cheese Burger</h3>
-<p>Loaded with cheese and fresh veggies.</p>
-<div class="price">$8.99</div>
-<button onclick="addCart()">Add to Cart</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800" alt="">
-<div class="card-body">
-<h3>Italian Pizza</h3>
-<p>Wood fired cheese pizza.</p>
-<div class="price">$14.99</div>
-<button onclick="addCart()">Add to Cart</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800" alt="">
-<div class="card-body">
-<h3>Healthy Salad</h3>
-<p>Fresh vegetables with dressing.</p>
-<div class="price">$7.99</div>
-<button onclick="addCart()">Add to Cart</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800" alt="">
-<div class="card-body">
-<h3>French Fries</h3>
-<p>Crispy golden fries.</p>
-<div class="price">$4.99</div>
-<button onclick="addCart()">Add to Cart</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800" alt="">
-<div class="card-body">
-<h3>Chicken Meal</h3>
-<p>Grilled chicken with rice.</p>
-<div class="price">$11.99</div>
-<button onclick="addCart()">Add to Cart</button>
-</div>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800" alt="">
-<div class="card-body">
-<h3>Chocolate Cake</h3>
-<p>Soft and creamy dessert.</p>
-<div class="price">$6.99</div>
-<button onclick="addCart()">Add to Cart</button>
-</div>
-</div>
-
-</div>
-
-</div>
-
-<footer>
-<p>© 2026 FoodExpress | CI/CD Pipeline Successfully Integrated 🚀</p>
-</footer>
-
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#121212;color:#fff}
+header{background:linear-gradient(90deg,#ff6b00,#ff9800);padding:18px;display:flex;justify-content:space-between;align-items:center}
+.cart{background:#fff;color:#ff6b00;padding:8px 16px;border-radius:20px;font-weight:bold}
+.hero{text-align:center;padding:50px;background:linear-gradient(135deg,#ff6b00,#ff9800,#ffc107)}
+.hero h2{font-size:42px}.hero p{margin-top:10px}
+.container{width:92%;margin:auto;padding:35px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+.card{background:#fff;color:#222;border-radius:14px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.35);transition:.3s}
+.card:hover{transform:translateY(-8px)}
+.card img{width:100%;height:180px;object-fit:cover}
+.info{padding:15px}.price{color:#ff6b00;font-weight:bold;font-size:22px;margin:10px 0}
+button{width:100%;padding:10px;border:none;background:#ff6b00;color:#fff;border-radius:8px;cursor:pointer}
+button:hover{background:#e65c00}
+footer{text-align:center;padding:20px;background:#1f1f1f;margin-top:30px}
+</style></head><body>
+<header><h1>🍔 FoodExpress</h1><div class="cart">🛒 Cart: <span id="cart">0</span></div></header>
+<section class="hero"><h2>🚀 FoodExpress DevOps Demo</h2><p>GitHub → Jenkins → Docker → Amazon ECR</p><h3>✅ Auto Deploy Demo</h3></section>
+<div class="container"><div class="grid">
+<div class="card"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800"><div class="info"><h3>Cheese Burger</h3><p>Fresh and delicious.</p><div class="price">$8.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=800"><div class="info"><h3>Pizza</h3><p>Fresh and delicious.</p><div class="price">$14.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=800"><div class="info"><h3>Salad</h3><p>Fresh and delicious.</p><div class="price">$7.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1529042410759-befb1204b468?w=800"><div class="info"><h3>Fries</h3><p>Fresh and delicious.</p><div class="price">$4.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800"><div class="info"><h3>Chicken Meal</h3><p>Fresh and delicious.</p><div class="price">$11.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800"><div class="info"><h3>Cake</h3><p>Fresh and delicious.</p><div class="price">$6.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=800"><div class="info"><h3>Pasta</h3><p>Fresh and delicious.</p><div class="price">$12.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1552332386-f8dd00dc2f85?w=800"><div class="info"><h3>Tacos</h3><p>Fresh and delicious.</p><div class="price">$9.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?w=800"><div class="info"><h3>Sushi</h3><p>Fresh and delicious.</p><div class="price">$18.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1617093727343-374698b1b08d?w=800"><div class="info"><h3>Noodles</h3><p>Fresh and delicious.</p><div class="price">$10.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=800"><div class="info"><h3>Donuts</h3><p>Fresh and delicious.</p><div class="price">$5.99</div><button onclick="addCart()">Add to Cart</button></div></div><div class="card"><img src="https://images.unsplash.com/photo-1622597467836-f3285f2131b8?w=800"><div class="info"><h3>Orange Juice</h3><p>Fresh and delicious.</p><div class="price">$3.99</div><button onclick="addCart()">Add to Cart</button></div></div>
+</div></div>
+<footer>© 2026 FoodExpress | GitHub • Jenkins • Docker • Amazon ECR 🚀</footer>
 <script>
-let cart = 0;
-
-function addCart(){
-    cart++;
-    document.getElementById("cart").innerHTML = cart;
-    alert("✅ Item added to cart!");
-}
-</script>
-
-</body>
-</html>
+let c=0;function addCart(){c++;document.getElementById('cart').innerText=c;alert('✅ Item added to cart!');}
+</script></body></html>
