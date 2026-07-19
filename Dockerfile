@@ -1,4 +1,4 @@
-## Use the official Nginx image
+## Use the official Nginx image.
 FROM nginx:alpine
 
 # Copy the application files to the Nginx web directory
