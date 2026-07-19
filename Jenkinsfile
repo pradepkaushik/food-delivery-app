@@ -105,7 +105,7 @@ pipeline {
                         kubectl apply -f k8/Deployment.yaml
 
                         # Uncomment if Service.yaml exists
-                        # kubectl apply -f k8/Service.yaml
+                        kubectl apply -f k8/Service.yaml
 
                         echo "Restarting Deployment..."
                         kubectl rollout restart deployment/${DEPLOYMENT_NAME}
