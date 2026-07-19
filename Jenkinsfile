@@ -15,7 +15,7 @@ pipeline {
         IMAGE_TAG         = "latest"
 
         // Amazon EKS
-        EKS_CLUSTER       = "your-eks-cluster-name"
+        EKS_CLUSTER       = "food-app"
 
         // Kubernetes Deployment
         DEPLOYMENT_NAME   = "food-app"
